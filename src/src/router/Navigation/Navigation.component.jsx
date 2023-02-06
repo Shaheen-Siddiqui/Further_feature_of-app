@@ -5,13 +5,10 @@ import './navigation.styles.scss'
 import { userContext } from '../../contexts/user.contexts';
 import { SignOutUser } from '../../utils/firebase/firebase.utils';
 import CardIcon from '../../components/card-icon/card-icon.component';
-import CardDropDown from '../../components/card-dropdown/card-dropdown.component';
-import {CartContext} from '../../contexts/cart.context'
-
+import CardDropDown from '../../components/card-dropdown/card-dropdown.component'
 
 const Navigationbaar = () => {
-    const { currentUser, setCurrentUser } = useContext(userContext);
-    const { isCartOpen } = useContext(CartContext);
+    const { currentUser, setCurrentUser } = useContext(userContext)
 
     async function signOutHandler() {
         await SignOutUser()
@@ -29,7 +26,7 @@ const Navigationbaar = () => {
                     }
                     <CardIcon />
                 </div>
-                {isCartOpen && <CardDropDown/>}
+                <CardDropDown />
             </div>
             <Outlet />
         </>

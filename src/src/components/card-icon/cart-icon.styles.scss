@@ -16,8 +16,11 @@
 }
 
 .item-count {
-  font-size: 2rem;
+  position: absolute;
+  font-size: 13px;
   font-weight: bold;
   bottom: 12px;
-  margin-top: -4rem;
+  margin-left: 4px;
+  color: red;
+  margin-top: 1rem;
 }
