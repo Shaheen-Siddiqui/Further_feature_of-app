@@ -1,6 +1,5 @@
 import './categories.style.scss';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { useContext, useState } from 'react';
 import Home from './router/home/home.component'
 import Navigationbaar from './router/Navigation/Navigation.component'
 import Authentication from './router/authentication/authentication.component';

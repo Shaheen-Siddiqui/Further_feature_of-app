@@ -21,7 +21,8 @@ const Navigationbaar = () => {
 
         <>
             <div className='navigation'>
-                <Link className='logo-container' to='/'> <FrootyLogo /> </Link>
+                {/* <Link className='logo-container' to='/'> <FrootyLogo /> </Link> */}
+                
                 <div className="nav-links-container">
                     <Link className='nav-link' to="/shop">Shop</Link>
                     {
