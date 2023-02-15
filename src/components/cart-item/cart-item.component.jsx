@@ -8,7 +8,6 @@ const CartItem = ({ itemsOfarray }) => {
         <div className='cart-item-container'>
             <img  src={imageUrl} alt={`${name}`} />
             <div className="item-details">
-
             <strong className='name'>{name} </strong>
             <strong className='price'>{Quantity} * $ {price}</strong>
             </div>
