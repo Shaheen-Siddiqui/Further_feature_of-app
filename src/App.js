@@ -19,9 +19,6 @@ function App() {
       </Route>
     </Routes>
 
-
-
-
   </>)
 }
 
