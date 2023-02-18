@@ -5,7 +5,7 @@ import { useContext } from 'react';
 
 const ProductCard = ({ products }) => {
     const { name, imageUrl, price } = products;
-    const { addItemToCart } = useContext(CartContext)
+    const { addItemToCart } = useContext(CartContext);
 
     const itemFromproductToDropdown = () => {
         addItemToCart(products);

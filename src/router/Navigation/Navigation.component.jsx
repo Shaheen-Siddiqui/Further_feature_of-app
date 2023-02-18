@@ -19,7 +19,7 @@ const Navigationbaar = () => {
     }
     return (
 
-        <>
+<>
             <div className='navigation'>
                 {/* <Link className='logo-container' to='/'> <FrootyLogo /> </Link> */}
                 
