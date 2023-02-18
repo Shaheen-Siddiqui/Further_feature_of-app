@@ -1,12 +1,12 @@
 import React, { useContext } from 'react'
 import { Outlet, Link } from 'react-router-dom';
-import { ReactComponent as FrootyLogo } from "../../assets/logo.svg";
-import './navigation.styles.scss'
+// import { ReactComponent as FrootyLogo } from "../../assets/logo.svg";
 import { userContext } from '../../contexts/user.contexts';
 import { SignOutUser } from '../../utils/firebase/firebase.utils';
 import CardIcon from '../../components/card-icon/card-icon.component';
 import CardDropDown from '../../components/card-dropdown/card-dropdown.component';
-import {CartContext} from '../../contexts/cart.context'
+import { CartContext } from '../../contexts/cart.context'
+import { NavigationSty, NavLinkSty, NavLinkContainerSty } from "./navigation.styles";
 
 
 const Navigationbaar = () => {
@@ -18,25 +18,22 @@ const Navigationbaar = () => {
         setCurrentUser(null);
     }
     return (
+        <>
+            <NavigationSty >
+                <Link className='logo-container' to='/'> LOGO </Link>
 
-<>
-            <div className='navigation'>
-                {/* <Link className='logo-container' to='/'> <FrootyLogo /> </Link> */}
-                
-                <div className="nav-links-container">
-                    <Link className='nav-link' to="/shop">Shop</Link>
+                <NavLinkContainerSty>
+                    <NavLinkSty to="/shop">Shop</NavLinkSty>
                     {
-                        currentUser ? (<span className='nav-link' onClick={signOutHandler}>sign-out</span>) : (<Link className='nav-link' to="/auth">sign-in</Link>)
+                        currentUser ? (<NavLinkSty as="span" onClick={signOutHandler}>sign-out</NavLinkSty>) : (<NavLinkSty to="/auth">sign-in</NavLinkSty>)
                     }
                     <CardIcon />
-                </div>
-                {isCartOpen && <CardDropDown/>}
-            </div>
+                </NavLinkContainerSty>
+                {isCartOpen && <CardDropDown />}
+            </NavigationSty>
             <Outlet />
         </>
-
-
     )
 }
 
-export default Navigationbaar
+export default Navigationbaar;
