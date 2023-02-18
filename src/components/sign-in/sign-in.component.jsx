@@ -1,9 +1,8 @@
-import { async } from '@firebase/util';
 import React, { useState, useContext } from 'react';
 import { signInWithGooglePopup, createUserDocumentFromAuth, signInAuthUserWithEmailAndPassword, } from '../../utils/firebase/firebase.utils'
 import FormInput from '../form-input/form-input.component'
 import './sign-in.style.scss';
-import Button from '../button/button.component'
+import Button,{BUTTON_TYPE_CLASS} from '../button/button.component'
 import { userContext } from '../../contexts/user.contexts'
 const inputFields = {
     email: '',
@@ -68,7 +67,7 @@ const SignIn = () => {
                 <div className="buttons-div">
 
                     <Button type='submit'>sign in </Button>
-                    <Button type='button' buttonType='google' onClick={logGoogleUser} >google sign-in </Button>
+                    <Button type='button' buttonType={BUTTON_TYPE_CLASS.google} onClick={logGoogleUser} >google sign-in </Button>
                 </div>
             </form>
         </div>

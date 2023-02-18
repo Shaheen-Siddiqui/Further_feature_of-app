@@ -1,8 +1,8 @@
 import {React, useContext} from 'react';
-import {ReactComponent as ShoppingBadImage} from '../../assets/shopping-bag.svg';
-import '../../components/card-icon/cart-icon.styles.scss';
+import './cart-icon.styles.jsx';
 import { CartContext } from '../../contexts/cart.context'
 import shoppingBag from '../../assets/shopping-cart-emoji.png';
+import {CartIconContainerSty,ShoppingIconSty,ImageCountSty} from './cart-icon.styles'
 
 
 const CardIcon = () => {
@@ -11,10 +11,10 @@ const CardIcon = () => {
 
  
   return (
-    <div className='cart-icon-container'  onClick={toggleIsCartOpen}>
-      <img src={shoppingBag} alt="card-icon" className='shopping-icon'/>
-      <span className='item-count'> {cartCount} </span>
-    </div>
+    <CartIconContainerSty  onClick={toggleIsCartOpen}>
+      <ShoppingIconSty src={shoppingBag} alt="card-icon"/>
+      <ImageCountSty> {cartCount} </ImageCountSty>
+    </CartIconContainerSty>
   )
 }
 
