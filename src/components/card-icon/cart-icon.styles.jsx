@@ -21,4 +21,3 @@ margin-top: -3rem;
 margin-left: -3rem;
 `
 export {CartIconContainerSty,ShoppingIconSty,ImageCountSty}
-
