@@ -5,8 +5,8 @@ import { useParams } from 'react-router-dom';
 import "./category.style.scss"
 
 const Category = () => {
-    const [products, setProduct] = useState(categoriesMap[category])
     const { categoriesMap } = useContext(CategoriesContext);
+    const [products, setProduct] = useState(categoriesMap[category])
     const { category } = useParams()
 
     useEffect(() => {
