@@ -21,7 +21,6 @@ const Navigationbaar = () => {
         <>
             <NavigationSty >
                 <Link className='logo-container' to='/'> LOGO </Link>
-
                 <NavLinkContainerSty>
                     <NavLinkSty to="/shop">Shop</NavLinkSty>
                     {
