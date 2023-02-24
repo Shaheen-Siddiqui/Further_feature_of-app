@@ -1,4 +1,4 @@
-import { createContext, useEffect, useReducer } from "react";
+import { createContext, useReducer } from "react";
 import { ActionCreater } from "../utils/reducer/reducer.utils";
 
 
@@ -40,6 +40,7 @@ const INITIAL_STATE = {
 }
 const cartReducer = (state, action) => {
     const { type, payload } = action;
+    console.log(payload,'okay');
     switch (type) {
         case 'SET_CART_ITEMS':
             return {
@@ -51,7 +52,6 @@ const cartReducer = (state, action) => {
                 ...state,
                 isCartOpen: payload
             }
-            break;
 
         default:
             throw new Error(`unhandled type ${type} check your cartReducer`)
@@ -77,13 +77,14 @@ export const CartProvider = ({ children }) => {
     }
     const clearItemFromCart = (cartItemToClear) => {
         const newCartItems = clearCartItem(cartItems, cartItemToClear)
-        updateCartItemReducer = (newCartItems)
+        updateCartItemReducer(newCartItems)
     }
     const setIsCartOpen = (boolien) => {
-        dispatch(ActionCreater('IS_CART_OPEN', boolien) )
+        dispatch(ActionCreater('IS_CART_OPEN', boolien))
     }
 
     const value = { isCartOpen, setIsCartOpen, addItemToCart, cartItems, cartCount, removeItemToCart, clearItemFromCart, cartTotal };
     return <CartContext.Provider value={value}>{children} </CartContext.Provider>
 };
+
 
