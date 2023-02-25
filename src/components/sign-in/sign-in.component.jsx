@@ -2,18 +2,20 @@ import React, { useState, useContext } from 'react';
 import { signInWithGooglePopup, createUserDocumentFromAuth, signInAuthUserWithEmailAndPassword, } from '../../utils/firebase/firebase.utils'
 import FormInput from '../form-input/form-input.component'
 import './sign-in.style.scss';
-import Button,{BUTTON_TYPE_CLASS} from '../button/button.component'
-import { userContext } from '../../contexts/user.contexts'
+import Button, { BUTTON_TYPE_CLASS } from '../button/button.component'
+import { setCurrentUser } from "../../store/user/user.action";
+import { useDispatch } from "react-redux";
+
 const inputFields = {
     email: '',
     password: '',
 };
 
 const SignIn = () => {
+    const dispatch = useDispatch()
     const [formFields, setFormFields] = useState(inputFields);
     const { email, password, } = formFields;
 
-    const { setCurrentUser } = useContext(userContext)
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -26,7 +28,7 @@ const SignIn = () => {
         event.preventDefault();
         try {
             let { user } = await signInAuthUserWithEmailAndPassword(email, password)
-            setCurrentUser(user)
+            dispatch(setCurrentUser(user))
             setFormFields(inputFields)
 
         } catch (error) {
@@ -45,7 +47,7 @@ const SignIn = () => {
             }
 
         }
-    }       
+    }
 
 
     const logGoogleUser = async () => {

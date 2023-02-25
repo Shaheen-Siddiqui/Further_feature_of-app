@@ -4,7 +4,9 @@ import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from '
 import FormInput from '../../components/form-input/form-input.component'
 import './sign-up.style.scss';
 import Button, { BUTTON_TYPE_CLASS } from '../button/button.component';
-import { userContext } from '../../contexts/user.contexts'
+import { setCurrentUser } from "../../store/user/user.action";
+import { useDispatch } from "react-redux";
+
 
 const inputFields = {
     displayName: '',
@@ -16,7 +18,8 @@ const inputFields = {
 const SignUp = () => {
     const [formFields, setFormFields] = useState(inputFields);
     const { displayName, email, password, confirmPassword } = formFields;
-    const { setCurrentUser } = useContext(userContext)
+    const dispatch=useDispatch()
+
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -36,7 +39,7 @@ const SignUp = () => {
 
             const { user } = await createAuthUserWithEmailAndPassword(email, password);
             await createUserDocumentFromAuth(user, { displayName });
-            setCurrentUser(user);
+            dispatch(setCurrentUser(user))
             ; setFormFields(inputFields)
 
         } catch (error) {

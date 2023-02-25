@@ -63,7 +63,7 @@ export const CartProvider = ({ children }) => {
     const updateCartItemReducer = (newCartItems) => {
         const cartTotalItem = newCartItems.reduce((total, cartItems) => total + cartItems.Quantity, 0);
         const newCartTotal = newCartItems.reduce((total, cartItems) => total + cartItems.Quantity * cartItems.price, 0);
-        dispatch(ActionCreater('SET_CART_ITEMS', { cartItems: newCartItems, cartTotal: newCartTotal, cartCount: cartTotalItem }))
+        dispatch(ActionCreater('SET_CART_ITEMS', { cartItems: newCartItems, cartTotal: newCartTotal, cartCount: cartTotalItem }));
     }
 
     const addItemToCart = (productToAdd) => {
@@ -83,7 +83,9 @@ export const CartProvider = ({ children }) => {
         dispatch(ActionCreater('IS_CART_OPEN', boolien))
     }
 
-    const value = { isCartOpen, setIsCartOpen, addItemToCart, cartItems, cartCount, removeItemToCart, clearItemFromCart, cartTotal };
+    const value = { 
+        isCartOpen, cartItems, cartCount, cartTotal,
+        addItemToCart,removeItemToCart, clearItemFromCart,setIsCartOpen  };
     return <CartContext.Provider value={value}>{children} </CartContext.Provider>
 };
 
