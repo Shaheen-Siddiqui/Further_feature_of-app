@@ -1,14 +1,18 @@
 import './product-card.styles.scss';
-import Button from '../../components/button/button.component';
-import { CartContext } from '../../contexts/cart.context';
-import { useContext } from 'react';
+import Button, { BUTTON_TYPE_CLASS } from '../../components/button/button.component';
+import { useDispatch, useSelector } from "react-redux";
+import { addItemToCart } from "../../store/cart/cart.action";
+import { selectCartItems } from "../../store/cart/cart.selector";
 
 const ProductCard = ({ products }) => {
+    const dispatch = useDispatch();
+    const cartItems = useSelector(selectCartItems)
+
     const { name, imageUrl, price } = products;
-    const { addItemToCart } = useContext(CartContext)
+
 
     const itemFromproductToDropdown = () => {
-        addItemToCart(products);
+        dispatch(addItemToCart(cartItems, products));
     }
     return (
         <div className='product-card-container'>
@@ -17,9 +21,9 @@ const ProductCard = ({ products }) => {
                 <span className='name'>{name}</span>
                 <span className='price'>{price}</span>
             </div>
-            <Button buttonType='inverted' onClick={itemFromproductToDropdown}>Add to card</Button>
+            <Button buttonType={BUTTON_TYPE_CLASS.inverted} onClick={itemFromproductToDropdown}>ADD TO CARD..</Button>
         </div>
-    )
+    );
 }
 
 export default ProductCard

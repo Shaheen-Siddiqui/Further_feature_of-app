@@ -1,42 +1,40 @@
-import React, { useContext } from 'react'
 import { Outlet, Link } from 'react-router-dom';
-import { ReactComponent as FrootyLogo } from "../../assets/logo.svg";
-import './navigation.styles.scss'
-import { userContext } from '../../contexts/user.contexts';
+import { useSelector } from "react-redux";
+//INTERNAL-EXPORT ^^^
 import { SignOutUser } from '../../utils/firebase/firebase.utils';
 import CardIcon from '../../components/card-icon/card-icon.component';
 import CardDropDown from '../../components/card-dropdown/card-dropdown.component';
-import {CartContext} from '../../contexts/cart.context'
+import { NavigationSty, NavLinkSty, NavLinkContainerSty } from "./navigation.styles";
+import { currentUserSelector } from "../../store/user/user.selector";
+import { setCurrentUser } from "../../store/user/user.action";
+import { selectIsCartOpen } from "../../store/cart/cart.selector";
 
 
 const Navigationbaar = () => {
-    const { currentUser, setCurrentUser } = useContext(userContext);
-    const { isCartOpen } = useContext(CartContext);
+    const currentUser = useSelector(currentUserSelector)
+    const isCartOpen=useSelector(selectIsCartOpen)
+
 
     async function signOutHandler() {
         await SignOutUser()
         setCurrentUser(null);
     }
     return (
-
         <>
-            <div className='navigation'>
-                {/* <Link className='logo-container' to='/'> <FrootyLogo /> </Link> */}
-                
-                <div className="nav-links-container">
-                    <Link className='nav-link' to="/shop">Shop</Link>
+            <NavigationSty >
+                <Link className='logo-container' to='/'> LOGO </Link>
+                <NavLinkContainerSty>
+                    <NavLinkSty to="/shop">Shop</NavLinkSty>
                     {
-                        currentUser ? (<span className='nav-link' onClick={signOutHandler}>sign-out</span>) : (<Link className='nav-link' to="/auth">sign-in</Link>)
+                        currentUser ? (<NavLinkSty as="span" onClick={signOutHandler}>sign-out</NavLinkSty>) : (<NavLinkSty to="/auth">sign-in</NavLinkSty>)
                     }
                     <CardIcon />
-                </div>
-                {isCartOpen && <CardDropDown/>}
-            </div>
+                </NavLinkContainerSty>
+                {isCartOpen && <CardDropDown />}
+            </NavigationSty>
             <Outlet />
         </>
-
-
     )
 }
 
-export default Navigationbaar
+export default Navigationbaar;
