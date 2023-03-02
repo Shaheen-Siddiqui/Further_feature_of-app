@@ -24,4 +24,4 @@ const Button = ({ children, buttonType, ...otherProps }) => {
     )
 }
 
-export default Button;
+export default Button

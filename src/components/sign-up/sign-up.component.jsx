@@ -1,10 +1,9 @@
-import { async } from '@firebase/util';
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from '../../utils/firebase/firebase.utils'
 import FormInput from '../../components/form-input/form-input.component'
 import './sign-up.style.scss';
 import Button from '../button/button.component';
-import { userContext } from '../../contexts/user.contexts'
+
 
 const inputFields = {
     displayName: '',
@@ -16,7 +15,7 @@ const inputFields = {
 const SignUp = () => {
     const [formFields, setFormFields] = useState(inputFields);
     const { displayName, email, password, confirmPassword } = formFields;
-    const { setCurrentUser} = useContext(userContext)
+
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -36,13 +35,12 @@ const SignUp = () => {
 
             const {user} = await createAuthUserWithEmailAndPassword(email, password);
             await createUserDocumentFromAuth(user, { displayName });
-            setCurrentUser(user);   
            ;setFormFields(inputFields)
 
         } catch (error) {
 
             if (error.code === 'auth/email-already-in-use') {
-                alert('user alreadu exits');
+                alert('user already exits');
 
             } else {
 
@@ -66,7 +64,7 @@ const SignUp = () => {
 
                 <FormInput label='confirm password' id='userConfirmPassword' type="password" onChange={handleChange} name='confirmPassword' value={confirmPassword} />
 
-                <Button buttonType='signIn' type='submit'>sign up </Button>
+                <Button type='submit'>sign up </Button>
             </form>
         </div>
     );
