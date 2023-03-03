@@ -1,7 +1,7 @@
 import { compose, createStore, applyMiddleware } from "redux";
-import { logger } from "redux-logger";
+// import { logger } from "redux-logger";
 import { rootReducer } from "./root-reducer";
-import thunk from "redux-thunk";
+// import thunk from "redux-thunk";
 
 const loggerMiddleWare = (store) => (next) => (action) => {
     if (!action.type) {

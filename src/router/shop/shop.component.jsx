@@ -18,7 +18,7 @@ const Shop = () => {
             dispatch(categoryAction(categoriesMap))
         }
         categoriesMapValue();
-    }, []);
+    }, [dispatch]);
 
     return (
         <>
