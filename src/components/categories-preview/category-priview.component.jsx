@@ -1,22 +1,22 @@
 import React from 'react';
-import { CategoryPreviewContainerSty, TitleSty, PreviewSty } from "./category-preview.styles"
 import ProductCard from "../product-card/product-card.component";
+import { Preview,Title, CategoryPreviewContainer } from "./category-preview.styles";
 
 const CategoryPreview = ({ products, title }) => {
-
   return (
-    <CategoryPreviewContainerSty>
-      <h2>
-        <TitleSty className='title' to={title}>{title}</TitleSty>
-      </h2>
-      <PreviewSty>
+
+    <CategoryPreviewContainer>
+    <h2>
+      <Title to={title}>{title.toUpperCase()}</Title>
+    </h2>
+    <Preview>
         {
           products.filter((_, index) => index < 4).map((products) => {
             return <ProductCard key={products.id} products={products} />
           })
         }
-      </PreviewSty>
-    </CategoryPreviewContainerSty>
+        </Preview>
+    </CategoryPreviewContainer>
   )
 }
 

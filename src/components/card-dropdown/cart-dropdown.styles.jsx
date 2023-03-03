@@ -35,4 +35,3 @@ font-size: 18px;
 
 `
 export { CartDropdownContainerSty, CartItemsSty, EmpatyMessageSty };
-

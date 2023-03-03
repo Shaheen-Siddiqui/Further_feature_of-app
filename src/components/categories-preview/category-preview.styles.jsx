@@ -1,21 +1,21 @@
-import styled from "styled-components";
-import { Link } from "react-router-dom";
+import styled from 'styled-components';
 
-const CategoryPreviewContainerSty = styled.div`
-display: flex;
-flex-direction: column;
-margin-bottom: 30px;
-`
+import { Link } from 'react-router-dom';
 
-const TitleSty = styled(Link)`
-font-size: 28px;
-margin-bottom: 25px;
-cursor: pointer;
-`
-const PreviewSty = styled.div`
-display: grid;
-grid-template-columns: repeat(4, 1fr);
-column-gap: 20px;
-`
+export const CategoryPreviewContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+`;
 
-export { CategoryPreviewContainerSty, TitleSty, PreviewSty }
+export const Title = styled(Link)`
+  font-size: 28px;
+  margin-bottom: 25px;
+  cursor: pointer;
+`;
+
+export const Preview = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 20px;
+`;

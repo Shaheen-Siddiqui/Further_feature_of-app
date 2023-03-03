@@ -1,10 +1,9 @@
-
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from '../../utils/firebase/firebase.utils'
 import FormInput from '../../components/form-input/form-input.component'
 import './sign-up.style.scss';
-import Button, { BUTTON_TYPE_CLASS } from '../button/button.component';
-import { userContext } from '../../contexts/user.contexts'
+import Button from '../button/button.component';
+
 
 const inputFields = {
     displayName: '',
@@ -16,7 +15,7 @@ const inputFields = {
 const SignUp = () => {
     const [formFields, setFormFields] = useState(inputFields);
     const { displayName, email, password, confirmPassword } = formFields;
-    const { setCurrentUser } = useContext(userContext)
+
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -28,25 +27,27 @@ const SignUp = () => {
     const handleSubmit = async (event) => {
         event.preventDefault()
         if (password !== confirmPassword) {
-            alert('passwor do not match')
+            alert('passwor do not match')   
             return;
         }
 
         try {
 
-            const { user } = await createAuthUserWithEmailAndPassword(email, password);
+            const {user} = await createAuthUserWithEmailAndPassword(email, password);
             await createUserDocumentFromAuth(user, { displayName });
-            setCurrentUser(user);
-            ; setFormFields(inputFields)
+           ;setFormFields(inputFields)
 
         } catch (error) {
 
             if (error.code === 'auth/email-already-in-use') {
-                alert('user alreadu exits');
+                alert('user already exits');
+
             } else {
+
                 console.log(error);
             }
         }
+
     }
 
     return (
@@ -63,7 +64,7 @@ const SignUp = () => {
 
                 <FormInput label='confirm password' id='userConfirmPassword' type="password" onChange={handleChange} name='confirmPassword' value={confirmPassword} />
 
-                <Button buttonType={BUTTON_TYPE_CLASS.google} type='submit'>sign up </Button>
+                <Button type='submit'>sign up </Button>
             </form>
         </div>
     );

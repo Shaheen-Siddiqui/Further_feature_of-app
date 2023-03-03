@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { DirectoryItemContainerSty, BackgroungImageSty, BodySty } from './directory-item.style.jsx';
 
 
-const DirectoryItemComponent = ({ item: { title, imageUrl, route } }) => {
+const DirectoryItemComponent = ({ category: { title, imageUrl, route } }) => {
     const navigate = useNavigate();
 
     const DirectoryNavigate=()=> {
@@ -16,8 +16,7 @@ const DirectoryItemComponent = ({ item: { title, imageUrl, route } }) => {
                 <h2>{title}</h2>
                 <p>shop now... </p>
             </BodySty>
-        </DirectoryItemContainerSty >
-
+        </DirectoryItemContainerSty>
 
     );
 }
