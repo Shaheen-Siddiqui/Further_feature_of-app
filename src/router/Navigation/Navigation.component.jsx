@@ -23,10 +23,10 @@ const Navigationbaar = () => {
         <>
             <NavigationSty >
                 <Link className='logo-container' to='/'> 
-                👒<br/>
-                👧<br/>
-                👗<br/>
-                🧦<br/>
+                👒L<br/>
+                👧O<br/>
+                👗G<br/>
+                🧦O<br/>
                 </Link>
                 <NavLinkContainerSty>
                     <NavLinkSty to="/shop">Shop</NavLinkSty>
